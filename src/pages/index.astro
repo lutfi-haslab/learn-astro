@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import Card from '../components/Card.astro';
 import ReactCard from '../components/ReactCard';
+import VueCard from '../components/VueCard.vue';
 
 const data = [
 	{
@@ -26,6 +27,16 @@ const data = [
 				<h1>{item.nama}</h1>
 			))
 		}
-		<ReactCard client:visible />
+		<div class="mt-5 bg-blue-300 flex flex-col items-center p-12 rounded">
+			<h1>This is React</h1>
+			<ReactCard client:visible />
+		</div>
+		<div class="mt-5 bg-blue-300 flex flex-col items-center p-12 rounded">
+			<h1>This is Vue</h1>
+			<VueCard client:load />
+		</div>
+		<div class="mt-5 bg-blue-300 flex flex-col items-center p-12 rounded">
+			<h1>This is Svelte</h1>
+		</div>
 	</main>
 </Layout>
