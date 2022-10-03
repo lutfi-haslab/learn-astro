@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import Card from '../components/Card.astro';
 import ReactCard from '../components/ReactCard';
 import VueCard from '../components/VueCard.vue';
+import SvelteCard from '../components/SvelteCard.svelte';
 
 const data = [
 	{
@@ -37,6 +38,7 @@ const data = [
 		</div>
 		<div class="mt-5 bg-blue-300 flex flex-col items-center p-12 rounded">
 			<h1>This is Svelte</h1>
+			<SvelteCard client:load />
 		</div>
 	</main>
 </Layout>
