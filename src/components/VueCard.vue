@@ -1,19 +1,20 @@
-<script>
-export default {
-  data() {
-    return {
-      count: 0
-    }
-  }
-}
-</script>
-
 <template>
-  <button @click="count++">Count is: {{ count }}</button>
+  <aside v-if="$isCartOpen">Open</aside>
+  <div>
+    <p>Clicked {{ $counter }} {{ $counter === 1 ? 'time' : 'times' }}</p>
+    <button @click="incrementCount">Increment</button>
+  </div>
 </template>
 
-<style scoped>
-button {
-  font-weight: bold;
-}
-</style>
+<script setup>
+import { isCartOpen } from '../store/cartStore';
+import { counter } from '../store/counter';
+import { useStore } from '@nanostores/vue';
+
+const $isCartOpen = useStore(isCartOpen);
+const $counter = useStore(counter);
+
+const incrementCount = () => {
+  $counter += 1;
+};
+</script>

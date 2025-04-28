@@ -1,11 +1,20 @@
 <script>
-	let count = 0;
+ 	import { isCartOpen } from '../store/cartStore';
+ 	import {counter} from '../store/counter';
+
 
 	function incrementCount() {
-        count += 1
+        $counter += 1
 	}
 </script>
 
-<button on:click={incrementCount}>
-	Clicked {count} {count === 1 ? 'time' : 'times'}
-</button>
+<div>
+	<button on:click={incrementCount}>
+		Clicked {$counter} {$counter === 1 ? 'time' : 'times'}
+	</button>
+	{#if $isCartOpen}
+<aside>
+	<p>Cart is Open</p>
+</aside>
+{/if}
+</div>
