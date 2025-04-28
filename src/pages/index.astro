@@ -4,6 +4,9 @@ import Card from '../components/Card.astro';
 import ReactCard from '../components/ReactCard';
 import VueCard from '../components/VueCard.vue';
 import SvelteCard from '../components/SvelteCard.svelte';
+import { db, Comment } from 'astro:db';
+
+const comments = await db.select().from(Comment);
 
 const data = [
 	{
@@ -28,17 +31,27 @@ const data = [
 				<h1>{item.nama}</h1>
 			))
 		}
+		<h2>Comments</h2>
+
+		{
+		  comments.map(({ authorId, body }) => (
+			<article>
+			  <p>Author: {authorId}</p>
+			  <p>{body}</p>
+			</article>
+		  ))
+		}
 		<div class="mt-5 bg-blue-300 flex flex-col items-center p-12 rounded">
 			<h1>This is React</h1>
-			<ReactCard client:visible />
+			<ReactCard client:only="react" />
 		</div>
 		<div class="mt-5 bg-blue-300 flex flex-col items-center p-12 rounded">
 			<h1>This is Vue</h1>
-			<VueCard client:load />
+			<VueCard client:only="vue" />
 		</div>
 		<div class="mt-5 bg-blue-300 flex flex-col items-center p-12 rounded">
 			<h1>This is Svelte</h1>
-			<SvelteCard client:load />
+			<SvelteCard client:only />
 		</div>
 	</main>
 </Layout>
